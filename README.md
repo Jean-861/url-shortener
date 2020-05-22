@@ -3,6 +3,19 @@
 
 ## Instalação
 1. ```yarn```
+2. Criar um arquivo ".env" e adicionar as váriáveis.
+Exemplo:
+
+```sh
+MONGO_URL=`mongodb://localhost:27017/url_system`
+PORT=8081
+LINK_APP=http://localhost:8081/
+```
+3. Para subir a aplicação em modo dev utilize o comando:
+```yarn dev```
+4. Para subir a aplicação em modo prod utilize o comando:
+```yarn build```
+```yarn start```
 
 ## Exemplo de Uso
 Pode-se visualizar a documentação após subir a aplicação no link.
