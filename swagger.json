@@ -1,0 +1,110 @@
+{
+    "swagger"   : "2.0",
+    "info"      : {
+        "version"       : "1.0.0",
+        "title"         : "API - URL Shortener",
+        "description"   : "Api para gerar versão curta da url solicitada"
+    },
+    "host" : "localhost:8081",
+    "basePath" : "/",
+    "schemes": [
+        "http"
+    ],
+    
+    "consumes" : [
+        "application/json"
+    ],
+
+    "tags" : [
+        {
+            "name" : "Url Shortener",
+            "description" : "Rota para encurtar url."
+        },
+        {
+            "name" : "Url Acess",
+            "description" : "Acessar rota salva. Deve ser acessada pelo browser."
+        }
+    ],
+
+    "paths" : {
+        
+        "/encurtar" : {
+            "post" : {
+                "tags" : [
+                    "Url Shortener"
+                ],
+                "summary" : "Cadastrar nova URL",
+                "parameters" : [
+                    {
+                        "in" : "body",
+                        "name" : "body",
+                        "description" : "Corpo da requisição",
+                        "schema" : {
+                            "$ref" : "#/definitions/UrlParam"
+                        }
+                    }
+                ],
+                "produces" : [
+                    "application/json"
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "OK",
+                        "schema" : {
+                            "$ref" : "#/definitions/UrlNew"
+                        }
+                    },
+                    "400" : {
+                        "description" : "Bad Request"
+                    },
+                    "404" : {
+                        "description" : "Not found"
+                    }
+                }
+            }
+        },
+        
+        "/{hashId}" : {
+            
+            "get" : {
+                "tags" : [
+                    "Url Acess"
+                ],
+                "summary" : "Deve ser executado no browser('http://localhost:8081/hashId') e redireciona para a URL salva.",
+                "responses" : {
+                    "200" : {
+                        "description" : "Redireciona para página salva se aberto no browser"
+                    },
+                    "404" : {
+                        "description" : "Falha na requisição. Não localizado!"
+                    },
+                    "400" : {
+                        "description" : "Por favor execute no browser!"
+                    }
+                }
+            }
+        }
+    },
+
+    "definitions" : {
+        "UrlParam" : {
+            "type" : "object",
+            "properties" : {
+                "url" : {
+                    "type" : "string"
+                }
+            }
+        },
+        "UrlNew" : {
+            "type" : "object",
+            "properties" : {
+                "newUrl" : {
+                    "type" : "string"
+                },
+                "dueDate" : {
+                    "type" : "string"
+                }
+            }
+        }
+    }
+}
