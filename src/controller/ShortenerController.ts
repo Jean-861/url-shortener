@@ -5,12 +5,14 @@ import HashUtills from "../utils/HashUtills";
 import BadRequest  from "../routers/BadRequest";
 import NotFound from "../routers/NotFound";
 import isUrl from "is-url";
+import dotenv from 'dotenv'
+dotenv.config()
 
 class ShortenerController {
 
     public async shortener( req : Request, res : Response ) : Promise <Response> {
         if( req.body.url != undefined && isUrl(req.body.url) ){
-            const UrlServer = "http://localhost:8081/"
+            const UrlServer = process.env.LINK_APP
             let hashString  = await HashUtills.getNewCode()
 
             let newRegister             = await Url.create( req.body )

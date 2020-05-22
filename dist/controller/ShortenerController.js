@@ -5,12 +5,14 @@ var _HashUtills = require('../utils/HashUtills'); var _HashUtills2 = _interopReq
 var _BadRequest = require('../routers/BadRequest'); var _BadRequest2 = _interopRequireDefault(_BadRequest);
 var _NotFound = require('../routers/NotFound'); var _NotFound2 = _interopRequireDefault(_NotFound);
 var _isurl = require('is-url'); var _isurl2 = _interopRequireDefault(_isurl);
+var _dotenv = require('dotenv'); var _dotenv2 = _interopRequireDefault(_dotenv);
+_dotenv2.default.config()
 
 class ShortenerController {
 
      async shortener( req , res  )  {
         if( req.body.url != undefined && _isurl2.default.call(void 0, req.body.url) ){
-            const UrlServer = "http://localhost:8081/"
+            const UrlServer = process.env.LINK_APP
             let hashString  = await _HashUtills2.default.getNewCode()
 
             let newRegister             = await _Url.Url.create( req.body )
