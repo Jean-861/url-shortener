@@ -5,12 +5,14 @@ import routes from './routes'
 import bodyParser from "body-parser"
 import swaggerUi from "swagger-ui-express"
 import swaggerDocument from '../swagger.json'
+import dotenv from 'dotenv'
 
 class App {
 
     public express : express.Application
 
     constructor () {
+        dotenv.config()
         this.express = express()
         
         this.middlewares()
@@ -25,7 +27,9 @@ class App {
     }
 
     private async database () {
-        mongoose.connect(`mongodb://localhost:27017/url_system`,{
+        mongoose.connect(
+            process.env.MONGO_URL,
+        {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
