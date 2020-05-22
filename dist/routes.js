@@ -3,7 +3,6 @@ var _ShortenerController = require('./controller/ShortenerController'); var _Sho
 
 const routes = _express.Router.call(void 0, )
 
-    routes.get('/', ( req, res) => { res.send("Up")})
     routes.get('/:hashId', _ShortenerController2.default.getUrl )    
     routes.post('/encurtar', _ShortenerController2.default.shortener )
 
