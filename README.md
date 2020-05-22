@@ -43,3 +43,5 @@ Após o request a aplicação vai salvar a url no Banco de Dados e retornar uma 
   "dueDate" : "2020-05-25T01:40:32.718Z"
 }
 ```
+
+É possível também recuperar a URL salva acessando peol browser o link que recebeu na resposta da requisição.
